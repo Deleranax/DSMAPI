@@ -1,0 +1,9 @@
+name: DSMAPI
+version: ${project.version}
+main: fr.dwightstudio.dsmapi.Dsmapi
+api-version: 1.16
+prefix: DSMAPI
+load: STARTUP
+authors: [ Deleranax ]
+description: Simple Menu API.
+website: https://dwight-studio.fr/
