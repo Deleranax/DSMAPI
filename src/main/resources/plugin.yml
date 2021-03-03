@@ -7,3 +7,7 @@ load: STARTUP
 authors: [ Deleranax ]
 description: Simple Menu API.
 website: https://dwight-studio.fr/
+commands:
+  dsm-test:
+    usage: /dsm-test
+    description: Test the api.
