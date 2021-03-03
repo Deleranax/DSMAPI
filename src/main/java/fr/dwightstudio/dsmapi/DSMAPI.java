@@ -2,7 +2,7 @@ package fr.dwightstudio.dsmapi;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class Dsmapi extends JavaPlugin {
+public final class DSMAPI extends JavaPlugin {
 
     @Override
     public void onEnable() {
