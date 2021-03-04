@@ -1,5 +1,6 @@
 package fr.dwightstudio.dsmapi.commands;
 
+import fr.dwightstudio.dsmapi.DSMAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -13,7 +14,12 @@ public class TestExecutor implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            new TestMenu().open(player, 0);
+            if (player.hasPermission("dsmapi.test")) {
+
+                new TestMenu().open(player, 0);
+            } else {
+                player.sendMessage(DSMAPI.getInstance().getCommand("dsm-test").getPermissionMessage());
+            }
 
             return true;
         } else {

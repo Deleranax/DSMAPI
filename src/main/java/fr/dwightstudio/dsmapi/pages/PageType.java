@@ -105,7 +105,7 @@ public enum PageType {
      * * @throws IllegalArgumentException if the array does not match the shape of the page
      */
     public ItemStack[] flatten(ItemStack[][] content) {
-        Validate.isTrue(content.length == getRow(), "the number of rows does not match the shape of the page, " + content.length + " instead of " + getRow());
+        Validate.isTrue(content.length == getRow(), "The number of rows does not match the shape of the page, " + content.length + " instead of " + getRow());
 
         ItemStack[] rtn = getBlankArray();
 
@@ -113,12 +113,12 @@ public enum PageType {
 
         for (ItemStack[] column : content) {
 
-            Validate.isTrue(column.length == getColumn(), "the number of columns does not match the shape of the page, " + column.length + " instead of " + getColumn());
+            Validate.isTrue(column.length == getColumn(), "The number of columns does not match the shape of the page, " + column.length + " instead of " + getColumn());
 
             int x = 0;
 
             for (ItemStack item : column) {
-                rtn[y * 9 + x] = item;
+                rtn[y * getColumn() + x] = item;
                 x++;
             }
 

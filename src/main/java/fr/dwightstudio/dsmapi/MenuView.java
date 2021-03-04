@@ -23,8 +23,8 @@ public class MenuView implements Listener {
     private InventoryView view;
 
     /**
-     * @param menu menu
-     * @param currentPage
+     * @param menu the menu to open
+     * @param currentPage the index of the page to open
      * @throws IllegalArgumentException if one of the parameter is null, or the menu is invalid
      */
     public MenuView(Menu menu, Player player, int currentPage) {
@@ -36,21 +36,8 @@ public class MenuView implements Listener {
 
         this.menu = menu;
         this.player = player;
-        this.currentPage = currentPage;
 
-        ItemStack[] pageContent = this.menu.getPage(currentPage).getContent();
-
-        if (this.menu.getPage(currentPage).getType().getInventoryType() == InventoryType.CHEST) {
-            this.inventory = Bukkit.createInventory(null, this.menu.getPage(currentPage).getType().getSize(), this.getCurrentPage().getName() != null ? this.getCurrentPage().getName() : this.menu.getName());
-        } else {
-            this.inventory = Bukkit.createInventory(null, this.menu.getPage(currentPage).getType().getInventoryType(), this.getCurrentPage().getName() != null ? this.getCurrentPage().getName() : this.menu.getName());
-        }
-
-        Validate.isTrue(pageContent.length == this.inventory.getSize(), "the length of the content does not correspond to the length declared in the page type");
-
-        this.inventory.setContents(pageContent);
-
-        this.view = this.player.openInventory(this.inventory);
+        this.setPage(currentPage);
     }
 
     /**
@@ -93,8 +80,22 @@ public class MenuView implements Listener {
      * @throws IllegalArgumentException if the page index is out of bounds
      */
     public void setPage(int index) {
-        Validate.isTrue(index > 0 && index < this.menu.getPageCount());
+        Validate.isTrue(index >= 0 && index < this.menu.getPageCount(), "Page index out of bounds");
         this.currentPage = index;
+
+        ItemStack[] pageContent = this.menu.getPage(currentPage).getContent();
+
+        if (this.menu.getPage(currentPage).getType().getInventoryType() == InventoryType.CHEST) {
+            this.inventory = Bukkit.createInventory(null, this.menu.getPage(currentPage).getType().getSize(), this.getCurrentPage().getName() != null ? this.getCurrentPage().getName() : this.menu.getName());
+        } else {
+            this.inventory = Bukkit.createInventory(null, this.menu.getPage(currentPage).getType().getInventoryType(), this.getCurrentPage().getName() != null ? this.getCurrentPage().getName() : this.menu.getName());
+        }
+
+        Validate.isTrue(pageContent.length == this.inventory.getSize(), "The length of the content does not correspond to the length declared in the page type");
+
+        this.inventory.setContents(pageContent);
+
+        this.view = this.player.openInventory(this.inventory);
     }
 
     /**

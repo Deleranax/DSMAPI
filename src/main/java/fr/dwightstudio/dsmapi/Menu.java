@@ -23,7 +23,7 @@ public abstract class Menu {
      * @throws IllegalArgumentException if index is not valid
      */
     public Page getPage(int index) {
-        Validate.isTrue(index >= 0 && index < getPageCount(), "index must be between 0 and " + getPageCount() + " excluded");
+        Validate.isTrue(index >= 0 && index < getPageCount(), "Index must be between 0 and " + getPageCount() + " excluded");
         return getPages()[index];
     }
 

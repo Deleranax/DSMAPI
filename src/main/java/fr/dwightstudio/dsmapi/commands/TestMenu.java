@@ -16,7 +16,7 @@ public class TestMenu extends Menu {
 
     @Override
     public String getName() {
-        return ChatColor.GREEN + "" + ChatColor.ITALIC + "DSMAPI testing menu";
+        return ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "DSMAPI testing menu";
     }
 
     @Override
@@ -26,7 +26,7 @@ public class TestMenu extends Menu {
         pages[0] = new Page() {
             @Override
             public String getName() {
-                return ChatColor.GREEN + "" + ChatColor.ITALIC + "DSMAPI testing menu page 1";
+                return ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "DSMAPI testing menu page 1";
             }
 
             @Override
@@ -47,6 +47,8 @@ public class TestMenu extends Menu {
 
             @Override
             public void onClick(MenuView view, ClickType clickType, int slot, ItemStack itemStack) {
+                if (itemStack == null) return;
+
                 switch (itemStack.getType()) {
                     case APPLE:
                         view.getPlayer().getInventory().addItem(new ItemStack(Material.APPLE));
@@ -61,7 +63,7 @@ public class TestMenu extends Menu {
         pages[1] = new Page() {
             @Override
             public String getName() {
-                return ChatColor.GREEN + "" + ChatColor.ITALIC + "DSMAPI testing menu page 2";
+                return ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "DSMAPI testing menu page 2";
             }
 
             @Override
@@ -69,7 +71,7 @@ public class TestMenu extends Menu {
 
                 ItemStack[][] content = getType().getBlank2DArray();
 
-                content[1][4] = new ItemCreator(Material.OAK_SIGN).setName("Apparently, it is working").getItem();
+                content[1][4] = new ItemCreator(Material.PAPER).setName("Apparently, it is working").getItem();
                 content[3][0] = new ItemCreator(Material.ARROW).setName("Previous Page").getItem();
                 content[3][8] = new ItemCreator(Material.ARROW).setName("Next Page").getItem();
 
@@ -83,8 +85,10 @@ public class TestMenu extends Menu {
 
             @Override
             public void onClick(MenuView view, ClickType clickType, int slot, ItemStack itemStack) {
+                if (itemStack == null) return;
+
                 switch (itemStack.getType()) {
-                    case OAK_SIGN:
+                    case PAPER:
                         view.getPlayer().sendMessage("Yes, it is working well.");
                         break;
                     case ARROW:
@@ -101,7 +105,7 @@ public class TestMenu extends Menu {
         pages[2] = new Page() {
             @Override
             public String getName() {
-                return ChatColor.GREEN + "" + ChatColor.ITALIC + "DSMAPI testing menu last page";
+                return ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "DSMAPI testing menu last page";
             }
 
             @Override
@@ -121,6 +125,8 @@ public class TestMenu extends Menu {
 
             @Override
             public void onClick(MenuView view, ClickType clickType, int slot, ItemStack itemStack) {
+                if (itemStack == null) return;
+
                 switch (itemStack.getType()) {
                     case BEACON:
                         view.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1, true, true));

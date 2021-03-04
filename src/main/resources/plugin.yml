@@ -11,3 +11,9 @@ commands:
   dsm-test:
     usage: /dsm-test
     description: Test the api.
+    permission:
+      dsmapi.test
+permissions:
+  dsmapi.test:
+    description: The access to the command /dsm-test.
+    default: op
