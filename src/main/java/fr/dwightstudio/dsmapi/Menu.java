@@ -46,7 +46,7 @@ public abstract class Menu {
      * @return a MenuView of the menu by the player
      * @see MenuView
      */
-    private MenuView open(Player player, int page) {
+    public MenuView open(Player player, int page) {
         return new MenuView(this, player, page);
     }
 }

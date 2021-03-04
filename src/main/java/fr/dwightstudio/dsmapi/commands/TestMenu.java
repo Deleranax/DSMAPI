@@ -7,9 +7,12 @@ import fr.dwightstudio.dsmapi.pages.PageType;
 import fr.dwightstudio.dsmapi.utils.ItemCreator;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
-public class TextMenu extends Menu {
+public class TestMenu extends Menu {
 
     @Override
     public String getName() {
@@ -31,8 +34,8 @@ public class TextMenu extends Menu {
 
                 ItemStack[][] content = getType().getBlank2DArray();
 
-                content[4][1] = new ItemCreator(Material.APPLE).setName("Give Apple").getItem();
-                content[8][2] = new ItemCreator(Material.ARROW).setName("Next Page").getItem();
+                content[1][4] = new ItemCreator(Material.APPLE).setName("Give Apple").getItem();
+                content[2][8] = new ItemCreator(Material.ARROW).setName("Next Page").getItem();
 
                 return getType().flatten(content);
             }
@@ -43,12 +46,7 @@ public class TextMenu extends Menu {
             }
 
             @Override
-            public void onClick(MenuView view, int slot) {
-
-            }
-
-            @Override
-            public void onClick(MenuView view, ItemStack itemStack) {
+            public void onClick(MenuView view, ClickType clickType, int slot, ItemStack itemStack) {
                 switch (itemStack.getType()) {
                     case APPLE:
                         view.getPlayer().getInventory().addItem(new ItemStack(Material.APPLE));
@@ -68,7 +66,14 @@ public class TextMenu extends Menu {
 
             @Override
             public ItemStack[] getContent() {
-                return new ItemStack[0];
+
+                ItemStack[][] content = getType().getBlank2DArray();
+
+                content[1][4] = new ItemCreator(Material.OAK_SIGN).setName("Apparently, it is working").getItem();
+                content[3][0] = new ItemCreator(Material.ARROW).setName("Previous Page").getItem();
+                content[3][8] = new ItemCreator(Material.ARROW).setName("Next Page").getItem();
+
+                return getType().flatten(content);
             }
 
             @Override
@@ -77,13 +82,19 @@ public class TextMenu extends Menu {
             }
 
             @Override
-            public void onClick(MenuView view, int slot) {
-
-            }
-
-            @Override
-            public void onClick(MenuView view, ItemStack itemStack) {
-
+            public void onClick(MenuView view, ClickType clickType, int slot, ItemStack itemStack) {
+                switch (itemStack.getType()) {
+                    case OAK_SIGN:
+                        view.getPlayer().sendMessage("Yes, it is working well.");
+                        break;
+                    case ARROW:
+                        if (itemStack.getItemMeta().getDisplayName().equals("Next Page")) {
+                            view.nextPage();
+                        } else {
+                            view.previousPage();
+                        }
+                        break;
+                }
             }
         };
 
@@ -95,7 +106,12 @@ public class TextMenu extends Menu {
 
             @Override
             public ItemStack[] getContent() {
-                return new ItemStack[0];
+                ItemStack[][] content = getType().getBlank2DArray();
+
+                content[1][1] = new ItemCreator(Material.BEACON).setName("Run away!").getItem();
+                content[2][0] = new ItemCreator(Material.ARROW).setName("Previous Page").getItem();
+
+                return getType().flatten(content);
             }
 
             @Override
@@ -104,13 +120,15 @@ public class TextMenu extends Menu {
             }
 
             @Override
-            public void onClick(MenuView view, int slot) {
-
-            }
-
-            @Override
-            public void onClick(MenuView view, ItemStack itemStack) {
-
+            public void onClick(MenuView view, ClickType clickType, int slot, ItemStack itemStack) {
+                switch (itemStack.getType()) {
+                    case BEACON:
+                        view.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1, true, true));
+                        break;
+                    case ARROW:
+                        view.previousPage();
+                        break;
+                }
             }
         };
 
@@ -119,6 +137,6 @@ public class TextMenu extends Menu {
 
     @Override
     public int getPageCount() {
-        return 0;
+        return 3;
     }
 }

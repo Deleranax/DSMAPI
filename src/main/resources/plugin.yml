@@ -1,6 +1,6 @@
 name: DSMAPI
 version: ${project.version}
-main: fr.dwightstudio.dsmapi.Dsmapi
+main: fr.dwightstudio.dsmapi.DSMAPI
 api-version: 1.16
 prefix: DSMAPI
 load: STARTUP

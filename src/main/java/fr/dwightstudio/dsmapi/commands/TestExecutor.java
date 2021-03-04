@@ -13,7 +13,8 @@ public class TestExecutor implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            //TODO: Test de la commande
+            new TestMenu().open(player, 0);
+
             return true;
         } else {
             sender.sendMessage(ChatColor.RED + "The sender must be a player.");

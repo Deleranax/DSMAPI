@@ -4,9 +4,7 @@ import fr.dwightstudio.dsmapi.pages.Page;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
@@ -31,13 +29,10 @@ public class MenuView implements Listener {
      */
     public MenuView(Menu menu, Player player, int currentPage) {
 
+        EventListener.register(this, player);
+
         Validate.notNull(menu);
         Validate.notNull(player);
-
-        //TODO: Régler le problème de register au onEnable()
-
-        // Register this object to detect events
-        DSMAPI.getInstance().getServer().getPluginManager().registerEvents(this, DSMAPI.getInstance());
 
         this.menu = menu;
         this.player = player;
@@ -68,7 +63,7 @@ public class MenuView implements Listener {
     /**
      * @return the current inventory view
      */
-    public InventoryView getView() {
+    public InventoryView getInventoryView() {
         return view;
     }
 
@@ -137,22 +132,7 @@ public class MenuView implements Listener {
         if (view != null) {
             this.view.close();
         }
-    }
 
-    @EventHandler
-    public void onClick(InventoryClickEvent event) {
-
-        if (event.getInventory() == inventory) {
-
-            DSMAPI.getInstance().getServer().getScheduler().runTask(DSMAPI.getInstance(), new Runnable() {
-
-                @Override
-                public void run() {
-                    getCurrentPage().onClick(MenuView.this, event.getRawSlot());
-                    getCurrentPage().onClick(MenuView.this, event.getCurrentItem());
-                }
-
-            });
-        }
+        EventListener.forget(this);
     }
 }

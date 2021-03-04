@@ -1,7 +1,7 @@
 package fr.dwightstudio.dsmapi.pages;
 
-import com.sun.istack.internal.Nullable;
 import fr.dwightstudio.dsmapi.MenuView;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 
 public interface Page {
@@ -27,17 +27,10 @@ public interface Page {
     PageType getType();
 
     /**
-     * Method called when the player click on a slot.
-     *
-     * @param slot the index of the clicked slot
-     */
-    void onClick(MenuView view, int slot);
-
-    /**
      * Method called when the player click on an item.
      * This item can be null.
      *
      * @param itemStack the clicked item
      */
-    void onClick(MenuView view, @Nullable ItemStack itemStack);
+    void onClick(MenuView view, ClickType clickType, int slot, ItemStack itemStack);
 }
