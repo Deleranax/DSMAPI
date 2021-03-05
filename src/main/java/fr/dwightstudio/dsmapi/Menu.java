@@ -15,7 +15,7 @@ public abstract class Menu {
     public abstract String getName();
 
     /**
-     * Get the page with a given index.
+     * Gets the page with a given index.
      *
      * @param index the index of the page
      * @return the corresponding page
@@ -28,7 +28,7 @@ public abstract class Menu {
     }
 
     /**
-     * Get a array that contains all the pages. This is just a copy of the original array, all the changes would be discarded.
+     * Gets a array that contains all the pages. This is just a copy of the original array, all the changes would be discarded.
      *
      * @return an array that contains all the pages
      */

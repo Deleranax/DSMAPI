@@ -51,7 +51,7 @@ public enum PageType {
     }
 
     /**
-     * Get the 2D coordinates of the item with a given index.
+     * Gets the 2D coordinates of the item with a given index.
      *
      * @param index the index of the item in the content array
      * @return the coordinates of the item
@@ -61,7 +61,7 @@ public enum PageType {
     }
 
     /**
-     * Get the index the item with coordinates.
+     * Gets the index the item with coordinates.
      *
      * @param coords2D the coordinates of the item
      * @return the index in the content of the item
@@ -129,7 +129,7 @@ public enum PageType {
     }
 
     /**
-     * Get a blank array (filled with null) with the size of the page.
+     * Gets a blank array (filled with null) with the size of the page.
      *
      * @return an array
      */
@@ -137,7 +137,7 @@ public enum PageType {
         return new ItemStack[getSize()];
     }
     /**
-     * Get a blank array (filled with null) with the shape of the page.
+     * Gets a blank array (filled with null) with the shape of the page.
      * It gives a 2-dimensional array (an array of rows).
      *
      * @return an array

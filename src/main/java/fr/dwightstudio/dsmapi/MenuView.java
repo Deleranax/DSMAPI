@@ -85,10 +85,10 @@ public class MenuView implements Listener {
 
         ItemStack[] pageContent = this.menu.getPage(currentPage).getContent();
 
-        if (this.menu.getPage(currentPage).getType().getInventoryType() == InventoryType.CHEST) {
-            this.inventory = Bukkit.createInventory(null, this.menu.getPage(currentPage).getType().getSize(), this.getCurrentPage().getName() != null ? this.getCurrentPage().getName() : this.menu.getName());
+        if (this.menu.getPage(currentPage).getPageType().getInventoryType() == InventoryType.CHEST) {
+            this.inventory = Bukkit.createInventory(null, this.menu.getPage(currentPage).getPageType().getSize(), this.getCurrentPage().getName() != null ? this.getCurrentPage().getName() : this.menu.getName());
         } else {
-            this.inventory = Bukkit.createInventory(null, this.menu.getPage(currentPage).getType().getInventoryType(), this.getCurrentPage().getName() != null ? this.getCurrentPage().getName() : this.menu.getName());
+            this.inventory = Bukkit.createInventory(null, this.menu.getPage(currentPage).getPageType().getInventoryType(), this.getCurrentPage().getName() != null ? this.getCurrentPage().getName() : this.menu.getName());
         }
 
         Validate.isTrue(pageContent.length == this.inventory.getSize(), "The length of the content does not correspond to the length declared in the page type");
