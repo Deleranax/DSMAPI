@@ -16,8 +16,6 @@ public final class DSMAPI extends JavaPlugin {
         INSTANCE = this;
 
         getCommand("dsm-test").setExecutor(new TestExecutor());
-
-        getServer().getPluginManager().registerEvents(new EventListener(), this);
     }
 
     @Override

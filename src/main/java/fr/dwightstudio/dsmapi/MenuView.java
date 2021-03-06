@@ -4,7 +4,9 @@ import fr.dwightstudio.dsmapi.pages.Page;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
@@ -29,7 +31,7 @@ public class MenuView implements Listener {
      */
     public MenuView(Menu menu, Player player, int currentPage) {
 
-        EventListener.register(this, player);
+        DSMAPI.getInstance().getServer().getPluginManager().registerEvents(this, DSMAPI.getInstance());
 
         Validate.notNull(menu);
         Validate.notNull(player);
@@ -133,7 +135,16 @@ public class MenuView implements Listener {
         if (view != null) {
             this.view.close();
         }
+    }
 
-        EventListener.forget(this);
+    @EventHandler
+    public void onClick(InventoryClickEvent event) {
+
+        if (event.getInventory() == this.getInventoryView().getTopInventory()) {
+
+            DSMAPI.getInstance().getServer().getScheduler().runTask(DSMAPI.getInstance(), () -> MenuView.this.getCurrentPage().onClick(MenuView.this, event.getClick(), event.getRawSlot(), event.getCurrentItem()));
+
+            event.setCancelled(true);
+        }
     }
 }
