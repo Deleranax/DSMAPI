@@ -140,7 +140,7 @@ public class MenuView implements Listener {
     @EventHandler
     public void onClick(InventoryClickEvent event) {
 
-        if (event.getInventory() == this.getInventoryView().getTopInventory()) {
+        if (event.getView() == this.getInventoryView()) {
 
             DSMAPI.getInstance().getServer().getScheduler().runTask(DSMAPI.getInstance(), () -> MenuView.this.getCurrentPage().onClick(MenuView.this, event.getClick(), event.getRawSlot(), event.getCurrentItem()));
 
