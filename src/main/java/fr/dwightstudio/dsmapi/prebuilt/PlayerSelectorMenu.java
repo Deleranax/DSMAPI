@@ -101,7 +101,7 @@ public class PlayerSelectorMenu extends Menu {
                             if (slot == 53) view.nextPage();
                             break;
                         default:
-                            action.accept(Bukkit.getPlayer(players[finalI * 45 + slot]));
+                            action.accept(Bukkit.getPlayer(players[view.getCurrentPageIndex() * 45 + slot]));
                             break;
                     }
                 }
