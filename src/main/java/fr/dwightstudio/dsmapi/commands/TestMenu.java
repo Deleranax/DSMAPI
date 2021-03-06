@@ -4,6 +4,7 @@ import fr.dwightstudio.dsmapi.Menu;
 import fr.dwightstudio.dsmapi.MenuView;
 import fr.dwightstudio.dsmapi.pages.Page;
 import fr.dwightstudio.dsmapi.pages.PageType;
+import fr.dwightstudio.dsmapi.prebuilt.PlayerSelectorMenu;
 import fr.dwightstudio.dsmapi.utils.ItemCreator;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -144,7 +145,7 @@ public class TestMenu extends Menu {
 
                 switch (itemStack.getType()) {
                     case BEACON:
-                        view.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1, true, true));
+                        new PlayerSelectorMenu("Player selector test", player -> true, player -> player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1, true, true))).open(view.getPlayer(), 0);
                         break;
                     case ARROW:
                         view.previousPage();
