@@ -142,9 +142,9 @@ public class MenuView implements Listener {
 
         if (event.getView() == this.getInventoryView()) {
 
-            if (event.getRawSlot() < 9) return;
+            if (event.getRawSlot() >= this.getCurrentPage().getContent().length && event.getRawSlot() < 0) return;
 
-            DSMAPI.getInstance().getServer().getScheduler().runTask(DSMAPI.getInstance(), () -> MenuView.this.getCurrentPage().onClick(MenuView.this, event.getClick(), event.getRawSlot() - 9, event.getCurrentItem()));
+            DSMAPI.getInstance().getServer().getScheduler().runTask(DSMAPI.getInstance(), () -> MenuView.this.getCurrentPage().onClick(MenuView.this, event.getClick(), event.getRawSlot(), event.getCurrentItem()));
 
             event.setCancelled(true);
         }
