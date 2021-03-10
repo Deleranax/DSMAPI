@@ -18,6 +18,10 @@ public abstract class SimpleMenu extends Menu implements Page {
         return this;
     }
 
+    public Page getPage() {
+        return this;
+    }
+
     @Override
     public Page[] getPages() {
         return new Page[] {this};

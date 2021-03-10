@@ -33,11 +33,16 @@ public class MenuView implements Listener {
 
         DSMAPI.getInstance().getServer().getPluginManager().registerEvents(this, DSMAPI.getInstance());
 
-        Validate.notNull(menu);
-        Validate.notNull(player);
+        Validate.notNull(menu, "Menu is null");
+        Validate.notNull(player, "Player is null");
 
         this.menu = menu;
         this.player = player;
+
+        Validate.notNull(menu.getName(), "Menu name is null");
+        Validate.notNull(menu.getPages(), "Pages array is null");
+        Validate.notEmpty(menu.getPages(), "Pages array is empty");
+        Validate.noNullElements(menu.getPages(), "A page of the menu is null");
 
         this.setPage(currentPage);
     }
@@ -79,11 +84,15 @@ public class MenuView implements Listener {
 
     /**
      * @param index the index of the page
-     * @throws IllegalArgumentException if the page index is out of bounds
+     * @throws IllegalArgumentException if the page index is out of bounds or if the page is invalid
      */
     public void setPage(int index) {
         Validate.isTrue(index >= 0 && index < this.menu.getPageCount(), "Page index out of bounds");
         this.currentPage = index;
+
+        Validate.notNull(this.menu.getPage(currentPage), "The page must not be null");
+        Validate.notNull(this.menu.getPage(currentPage).getPageType(), "The page type must not be null");
+        Validate.notNull(this.menu.getPage(currentPage).getContent(), "The content must not be null");
 
         ItemStack[] pageContent = this.menu.getPage(currentPage).getContent();
 
