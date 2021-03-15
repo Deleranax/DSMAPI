@@ -26,14 +26,5 @@ public interface Page {
      */
     PageType getPageType();
 
-    /**
-     * Method called when the player click on an item.
-     * This item can be null.
-     *
-     * @param view the current MenuView
-     * @param clickType the type of the click
-     * @param slot the slot when the click was located
-     * @param itemStack the clicked item
-     */
     void onClick(MenuView view, ClickType clickType, int slot, ItemStack itemStack);
 }

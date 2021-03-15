@@ -110,6 +110,13 @@ public class MenuView implements Listener {
     }
 
     /**
+     * Reopens the current page.
+     */
+    public void reopen() {
+        setPage(getCurrentPageIndex());
+    }
+
+    /**
      * Open the next page to the player.
      *
      * @return true if the page is effectively opened, otherwise false
