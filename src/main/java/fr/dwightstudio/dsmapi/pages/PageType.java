@@ -57,7 +57,7 @@ public enum PageType {
      * @return the coordinates of the item
      */
     public Coords2D getCoords2DFromIndex(int index) {
-        return new Coords2D(index / getRow(), (index % getRow()));
+        return new Coords2D(index % getRow(), index / getRow());
     }
 
     /**

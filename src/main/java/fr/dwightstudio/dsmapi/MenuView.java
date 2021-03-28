@@ -102,7 +102,7 @@ public class MenuView implements Listener {
             this.inventory = Bukkit.createInventory(null, this.menu.getPage(currentPage).getPageType().getInventoryType(), this.getCurrentPage().getName() != null ? this.getCurrentPage().getName() : this.menu.getName());
         }
 
-        Validate.isTrue(pageContent.length == this.inventory.getSize(), "The length of the content does not correspond to the length declared in the page type");
+        Validate.isTrue(pageContent.length == this.inventory.getContents().length, "The length of the content does not correspond to the length declared in the page type");
 
         this.inventory.setContents(pageContent);
 
