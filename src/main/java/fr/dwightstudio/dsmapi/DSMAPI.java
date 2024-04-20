@@ -6,9 +6,18 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class DSMAPI extends JavaPlugin {
 
     static private DSMAPI INSTANCE;
+    static private JavaPlugin EXTERNAL_INSTANCE;
 
     public static DSMAPI getInstance() {
         return INSTANCE;
+    }
+
+    public static JavaPlugin getPlugin() {
+        return INSTANCE == null ? EXTERNAL_INSTANCE : INSTANCE;
+    }
+
+    public static void initialize(JavaPlugin plugin) {
+        EXTERNAL_INSTANCE = plugin;
     }
 
     @Override

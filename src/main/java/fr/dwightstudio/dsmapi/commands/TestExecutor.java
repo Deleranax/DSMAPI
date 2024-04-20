@@ -7,6 +7,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.Objects;
+
 public class TestExecutor implements CommandExecutor {
 
     @Override
@@ -18,7 +20,7 @@ public class TestExecutor implements CommandExecutor {
 
                 new TestMenu().open(player, 0);
             } else {
-                player.sendMessage(DSMAPI.getInstance().getCommand("dsm-test").getPermissionMessage());
+                player.sendMessage(Objects.requireNonNull(DSMAPI.getInstance().getCommand("dsm-test").getPermissionMessage()));
             }
 
             return true;
