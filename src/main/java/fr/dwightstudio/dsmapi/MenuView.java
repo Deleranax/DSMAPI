@@ -31,7 +31,7 @@ public class MenuView implements Listener {
      */
     public MenuView(Menu menu, Player player, int currentPage) {
 
-        DSMAPI.getPlugin().getServer().getPluginManager().registerEvents(this, DSMAPI.getInstance());
+        DSMAPI.getPlugin().getServer().getPluginManager().registerEvents(this, DSMAPI.getPlugin());
 
         Validate.notNull(menu, "Menu is null");
         Validate.notNull(player, "Player is null");
@@ -160,7 +160,7 @@ public class MenuView implements Listener {
 
             if (event.getRawSlot() >= this.getCurrentPage().getContent().length || event.getRawSlot() < 0) return;
 
-            DSMAPI.getInstance().getServer().getScheduler().runTask(DSMAPI.getPlugin(), () -> MenuView.this.getCurrentPage().onClick(MenuView.this, event.getClick(), event.getRawSlot(), event.getCurrentItem()));
+            DSMAPI.getPlugin().getServer().getScheduler().runTask(DSMAPI.getPlugin(), () -> MenuView.this.getCurrentPage().onClick(MenuView.this, event.getClick(), event.getRawSlot(), event.getCurrentItem()));
 
             event.setCancelled(true);
         }

@@ -20,7 +20,7 @@ public class TestExecutor implements CommandExecutor {
 
                 new TestMenu().open(player, 0);
             } else {
-                player.sendMessage(Objects.requireNonNull(DSMAPI.getInstance().getCommand("dsm-test").getPermissionMessage()));
+                player.sendMessage(Objects.requireNonNull(DSMAPI.getPlugin().getCommand("dsm-test").getPermissionMessage()));
             }
 
             return true;
